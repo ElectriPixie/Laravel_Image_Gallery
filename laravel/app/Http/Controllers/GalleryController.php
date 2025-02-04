@@ -10,7 +10,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::all();
-        return view('gallery.index');
+        return view('gallery.index', ['galleries' => $galleries]);
     }
 
     public function show($id)
@@ -26,11 +26,19 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
+        if (!$request->has('title') || !$request->has('description')) {
+            return redirect()->back()->with('error', 'Title and description are required');
+        }
+    
         $gallery = new Gallery();
         $gallery->title = $request->input('title');
         $gallery->description = $request->input('description');
-        $gallery->save();
-        return redirect(url('gallery/index'));
+    
+        if (!$gallery->save()) {
+            return redirect()->back()->with('error', 'Failed to save gallery');
+        }
+    
+        return redirect(url('gallery/show', $gallery->id));
     }
 
     public function edit($id)

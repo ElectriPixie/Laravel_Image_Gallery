@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Image;
-use App\Gallery;
+use App\Models\Gallery;
+use App\Models\Image;
 
 class ImageController extends Controller
 {
@@ -21,11 +21,14 @@ class ImageController extends Controller
         return view('image.show', compact('image'));
     }
 
-    public function create()
+
+
+    public function create($gallery_id)
     {
-        // Display a form to create a new image
-        return view('image.create');
+        // Display a form to create a new image in the given gallery
+        return view('image.create', ['gallery' => Gallery::find($gallery_id)]);
     }
+    
 
     // In the ImageController, update the store method
     public function store(Request $request)
@@ -33,10 +36,14 @@ class ImageController extends Controller
         $image = new Image();
         $image->title = $request->input('title');
         $image->description = $request->input('description');
-        $image->image_path = $request->input('image_path');
         $image->gallery_id = $request->input('gallery_id');
+    
+        if ($request->hasFile('image_path')) {
+            $image->image_path = $request->image_path->store('images', 'public');
+        }
+    
         $image->save();
-        return redirect()->route('image.index');
+        return redirect(url('image/' . $image->id ));
     }
 
     public function edit($id)
@@ -55,7 +62,7 @@ class ImageController extends Controller
         $image->image_path = $request->input('image_path');
         $image->gallery_id = $request->input('gallery_id');
         $image->save();
-        return redirect()->route('image.index');
+        return redirect(url('image/index'));
     }
 
     public function destroy($id)
