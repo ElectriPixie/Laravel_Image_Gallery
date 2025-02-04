@@ -27,13 +27,14 @@ class ImageController extends Controller
         return view('image.create');
     }
 
+    // In the ImageController, update the store method
     public function store(Request $request)
     {
-        // Store a new image
         $image = new Image();
         $image->title = $request->input('title');
         $image->description = $request->input('description');
         $image->image_path = $request->input('image_path');
+        $image->gallery_id = $request->input('gallery_id');
         $image->save();
         return redirect()->route('image.index');
     }
@@ -45,13 +46,14 @@ class ImageController extends Controller
         return view('image.edit', compact('image'));
     }
 
+    // In the ImageController, update the update method
     public function update(Request $request, $id)
     {
-        // Update an existing image
         $image = Image::find($id);
         $image->title = $request->input('title');
         $image->description = $request->input('description');
         $image->image_path = $request->input('image_path');
+        $image->gallery_id = $request->input('gallery_id');
         $image->save();
         return redirect()->route('image.index');
     }
