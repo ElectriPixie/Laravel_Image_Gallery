@@ -70,7 +70,7 @@ class ImageController extends Controller
         // Delete an image
         $image = Image::find($id);
         $image->delete();
-        return redirect()->route('image.index');
+        return redirect()->back();
     }
 }
 ?>

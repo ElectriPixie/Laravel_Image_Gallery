@@ -5,7 +5,12 @@
     <h2>Images:</h2>
     @if($gallery->images()->exists())
         @foreach($gallery->images as $image)
-            <img src="{{ $image->image_path }}" alt="{{ $image->title }}">
+            <img src="{{ asset('storage/'.$image->image_path) }}" alt="{{ $image->title }}">
+            <form action="{{ url('image/'.$image->id.'/destroy') }}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         @endforeach
         <p><a href="{{ url('image/' . $gallery->id . '/create') }}">Add an image to this gallery</a></p>
     @else

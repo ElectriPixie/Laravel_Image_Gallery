@@ -27,4 +27,4 @@ Route::post('/image/{gallery_id}/store', [ImageController::class, 'store']);
 Route::get('/image/{id}', [ImageController::class, 'show']);
 Route::get('/image/{id}/edit', [ImageController::class, 'edit']);
 Route::put('/image/{id}', [ImageController::class, 'update']);
-Route::delete('/image/{id}', [ImageController::class, 'destroy']);
+Route::delete('/image/{id}/destroy', [ImageController::class, 'destroy']);
