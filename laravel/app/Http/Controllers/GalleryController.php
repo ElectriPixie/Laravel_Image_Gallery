@@ -10,13 +10,13 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::all();
-        return view('gallery.index', compact('galleries'));
+        return view('gallery.index');
     }
 
     public function show($id)
     {
         $gallery = Gallery::find($id);
-        return view('gallery.show', compact('gallery'));
+        return view('gallery.show', ['gallery' => $gallery]);
     }
 
     public function create()
@@ -30,13 +30,13 @@ class GalleryController extends Controller
         $gallery->title = $request->input('title');
         $gallery->description = $request->input('description');
         $gallery->save();
-        return redirect()->route('gallery.index');
+        return redirect(url('gallery/index'));
     }
 
     public function edit($id)
     {
         $gallery = Gallery::find($id);
-        return view('gallery.edit', compact('gallery'));
+        return view('gallery.edit');
     }
 
     public function update(Request $request, $id)
@@ -45,14 +45,14 @@ class GalleryController extends Controller
         $gallery->title = $request->input('title');
         $gallery->description = $request->input('description');
         $gallery->save();
-        return redirect()->route('gallery.index');
+        return redirect(url('gallery/index'));
     }
 
     public function destroy($id)
     {
         $gallery = Gallery::find($id);
         $gallery->delete();
-        return redirect()->route('gallery.index');
+        return redirect(url('gallery/index'));
     }
 }
 ?>

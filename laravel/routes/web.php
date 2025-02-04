@@ -10,13 +10,16 @@ Route::get('/', function () {
 });
 
 Route::get('/gallery', [GalleryController::class, 'index']);
+Route::get('/gallery/index', [GalleryController::class, 'index']);
 Route::get('/gallery/create', [GalleryController::class, 'create']);
+Route::delete('/gallery/destroy', [GalleryController::class, 'destroy']);
 Route::post('/gallery', [GalleryController::class, 'store']);
 Route::get('/gallery/{id}', [GalleryController::class, 'show']);
 Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit']);
 Route::put('/gallery/{id}', [GalleryController::class, 'update']);
 Route::delete('/gallery/{id}', [GalleryController::class, 'destroy']);
 Route::post('/gallery/store', [GalleryController::class, 'store']);
+Route::get('/gallery/show/{id}', [GalleryController::class, 'show']);
 
 Route::get('/image', [ImageController::class, 'index']);
 Route::get('/image/create', [ImageController::class, 'create']);
