@@ -9,8 +9,9 @@
     <label for="description">Description:</label>
     <textarea name="description">{{ $image->description }}</textarea>
     <br>
-    <label for="image_path">Image Path:</label>
+    <!-- <label for="image_path">Image Path:</label>
     <input type="text" name="image_path" value="{{ $image->image_path }}" required>
     <br>
+    -->
     <input type="submit" value="Update Image">
 </form>

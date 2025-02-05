@@ -5,10 +5,8 @@
     <img src="{{ asset('storage/'.$image->image_path) }}" alt="{{ $image->title }}">
 </a>
 
-<form action="{{ url('/gallery/'.$gallery->id.'/image/'.$image->id.'/update') }}" method="POST">
-    @csrf
-    @method('patch')
-    <button type="submit">Update</button>
+<form action="{{ url('/gallery/'.$gallery->id.'/image/'.$image->id.'/edit') }}" method="GET">
+    <button type="submit">Edit</button>
 </form>
 
 <form action="{{ url('/gallery/'.$gallery->id.'/image/'.$image->id.'/destroy') }}" method="POST">
