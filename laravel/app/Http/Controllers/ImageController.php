@@ -44,12 +44,12 @@ class ImageController extends Controller
         return view('image.index', ['images' => $images]);
     }
     
-    public function show($gallery_id, $image_id)
+    public function show($gallery_id, $image_id, $page)
     {
         // Display a single image
         $image = Gallery_Image::find($image_id);
         $gallery = Gallery::find($gallery_id);
-        return view('image.show', ['image' => $image, 'gallery' => $gallery]);
+        return view('image.show', ['image' => $image, 'gallery' => $gallery, 'page' => $page]);
     }
     
     public function create($gallery_id)

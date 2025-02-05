@@ -12,12 +12,20 @@ class GalleryController extends Controller
         return view('gallery.index', ['galleries' => $galleries]);
     }
 
-    public function show($id)
+    public function show($id, $page)
     {
         $gallery = Gallery::find($id);
-        return view('gallery.show', ['gallery' => $gallery]);
+        $per_page = 21;
+        $offset = ($page - 1) * $per_page;
+        $images = $gallery->images()->skip($offset)->take($per_page)->get();
+    
+        $total_images = $gallery->images()->count();
+        $last_page = ceil($total_images / $per_page);
+    
+        return view('gallery.show', ['gallery' => $gallery, 'images' => $images, 'last_page' => $last_page, 'page' => $page]);
     }
-
+    
+    
     public function create()
     {
         return view('gallery.create');

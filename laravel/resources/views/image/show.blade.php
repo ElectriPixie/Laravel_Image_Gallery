@@ -3,10 +3,10 @@
 </head>
 
 <div class="image-show">
-    <h1><a href="{{ url('/gallery/'.$gallery->id.'/show') }}">{{ $gallery->title }}</a><h1>
+    <h1><a href="{{ url('/gallery/'.$gallery->id.'/show/'. $page) }}">{{ $gallery->title }}</a><h1>
 <!--     <h2>{{ $image->title }}</h2>
     <p>{{ $image->description }}</p> -->
-    <a href="{{ url('/gallery/'.$image->gallery_id) }}">
+    <a href="{{ url('/gallery/'.$image->gallery_id.'/show/'.$page) }}">
         <img src="{{ asset('storage/'.$image->image_path) }}" alt="{{ $image->title }}" class="bordered-image" style="max-height: 60vh;">
     </a>
 

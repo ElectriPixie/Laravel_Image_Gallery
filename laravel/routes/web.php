@@ -20,7 +20,10 @@ Route::get('/gallery/{gallery_id}', function($gallery_id) {
 });
 Route::get('/gallery/{gallery_id}/edit', [GalleryController::class, 'edit']);
 Route::patch('/gallery/{gallery_id}/update', [GalleryController::class, 'update']);
-Route::get('/gallery/{gallery_id}/show/', [GalleryController::class, 'show']);
+Route::get('/gallery/{gallery_id}/show', function($gallery_id) {
+    return redirect('/gallery/' . $gallery_id . '/show/1', 301);
+});
+Route::get('/gallery/{gallery_id}/show/{page}', [GalleryController::class, 'show']);
 Route::delete('/gallery/{gallery_id}/destroy', [GalleryController::class, 'destroy']);
 
 #Route::get('/gallery/{gallery_id}/image', [ImageController::class, 'index']);
@@ -29,7 +32,10 @@ Route::post('/gallery/{gallery_id}/image/store', [ImageController::class, 'store
 Route::get('/gallery/{gallery_id}/image/{image_id}', function($gallery_id, $image_id) {
     return redirect('/gallery/' . $gallery_id . '/image/' . $image_id . '/show', 301);
 });
-Route::get('/gallery/{gallery_id}/image/{image_id}/show', [ImageController::class, 'show']);
+Route::get('/gallery/{gallery_id}/image/{image_id}/show', function($gallery_id, $image_id) {
+    return redirect('/gallery/' . $gallery_id . '/image/' . $image_id . '/show/1', 301);
+});
+Route::get('/gallery/{gallery_id}/image/{image_id}/show/{page}', [ImageController::class, 'show']);
 Route::get('/gallery/{gallery_id}/image/{image_id}/edit', [ImageController::class, 'edit']);
 Route::patch('/gallery/{gallery_id}/image/{image_id}/update', [ImageController::class, 'update']);
 Route::delete('/gallery/{gallery_id}/image/{image_id}/destroy', [ImageController::class, 'destroy']);
