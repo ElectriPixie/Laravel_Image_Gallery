@@ -6,25 +6,29 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ImageController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/gallery/index', 301);
 });
 
-Route::get('/gallery', [GalleryController::class, 'index']);
+Route::get('/gallery', function () {
+    return redirect('/gallery/index', 301);
+});
 Route::get('/gallery/index', [GalleryController::class, 'index']);
 Route::get('/gallery/create', [GalleryController::class, 'create']);
-Route::delete('/gallery/{id}/destroy', [GalleryController::class, 'destroy']);
-Route::post('/gallery', [GalleryController::class, 'store']);
-Route::get('/gallery/{id}', [GalleryController::class, 'show']);
-Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit']);
-Route::put('/gallery/{id}', [GalleryController::class, 'update']);
-Route::delete('/gallery/{id}', [GalleryController::class, 'destroy']);
 Route::post('/gallery/store', [GalleryController::class, 'store']);
-Route::get('/gallery/show/{id}', [GalleryController::class, 'show']);
+Route::get('/gallery/{gallery_id}', function($gallery_id) {
+    return redirect('/gallery/' . $gallery_id . '/show', 301);
+});
+Route::get('/gallery/{gallery_id}/edit', [GalleryController::class, 'edit']);
+Route::put('/gallery/{gallery_id}/update', [GalleryController::class, 'update']);
+Route::get('/gallery/{gallery_id}/show/', [GalleryController::class, 'show']);
+Route::delete('/gallery/{gallery_id}/destroy', [GalleryController::class, 'destroy']);
 
-Route::get('/image', [ImageController::class, 'index']);
-Route::get('/image/{gallery_id}/create', [ImageController::class, 'create']);
-Route::post('/image/{gallery_id}/store', [ImageController::class, 'store']);
-Route::get('/image/{id}', [ImageController::class, 'show']);
-Route::get('/image/{id}/edit', [ImageController::class, 'edit']);
-Route::put('/image/{id}', [ImageController::class, 'update']);
-Route::delete('/image/{id}/destroy', [ImageController::class, 'destroy']);
+Route::get('/gallery/{gallery_id}/image', [ImageController::class, 'index']);
+Route::get('/gallery/{gallery_id}/image/create', [ImageController::class, 'create']);
+Route::post('/gallery/{gallery_id}/image/store', [ImageController::class, 'store']);
+Route::get('/gallery/{gallery_id}/image/{image_id}', [ImageController::class, 'show']);
+Route::get('/gallery/{gallery_id}/image/{image_id}/show', [ImageController::class, 'show']);
+Route::get('/gallery/{gallery_id}/image/{image_id}/edit', [ImageController::class, 'edit']);
+Route::put('/gallery/{gallery_id}/image/{image_id}/update', [ImageController::class, 'update']);
+Route::delete('/gallery/{gallery_id}/image/{image_id}/destroy', [ImageController::class, 'destroy']);
+?>

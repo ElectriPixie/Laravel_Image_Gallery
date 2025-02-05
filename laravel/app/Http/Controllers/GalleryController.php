@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gallery;
-#use App\Gallery;
 
 class GalleryController extends Controller
 {
@@ -37,8 +36,7 @@ class GalleryController extends Controller
         if (!$gallery->save()) {
             return redirect()->back()->with('error', 'Failed to save gallery');
         }
-    
-        return redirect(url('gallery/show', $gallery->id));
+        return redirect(url('gallery/' . $gallery->id . '/show'));
     }
 
     public function edit($id)

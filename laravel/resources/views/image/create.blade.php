@@ -1,6 +1,6 @@
 <h1>Image Create</h1>
 
-<form action="{{ url('image/' . $gallery->id . '/store') }}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/gallery/'.$gallery->id.'/image/store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
     <label for="title">Title:</label>

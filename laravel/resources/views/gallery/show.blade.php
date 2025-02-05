@@ -6,14 +6,14 @@
     @if($gallery->images()->exists())
         @foreach($gallery->images as $image)
             <img src="{{ asset('storage/'.$image->image_path) }}" alt="{{ $image->title }}">
-            <form action="{{ url('image/'.$image->id.'/destroy') }}" method="post">
+            <form action="{{ url('/gallery/'.$gallery->id.'/image/'.$image->id.'/destroy') }}" method="post">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         @endforeach
-        <p><a href="{{ url('image/' . $gallery->id . '/create') }}">Add an image to this gallery</a></p>
+        <p><a href="{{ url('/gallery/'.$gallery->id.'/image/create') }}">Add an image to this gallery</a></p>
     @else
-        <p>No images found. <a href="{{ url('image/' . $gallery->id . '/create') }}">Add an image to this gallery</a></p>
+        <p>No images found. <a href="{{ url('/gallery/'.$gallery->id.'/image/create') }}">Add an image to this gallery</a></p>
     @endif
 @endif

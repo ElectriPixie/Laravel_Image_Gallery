@@ -3,7 +3,7 @@
 <ul>
     @foreach($images as $image)
         <li>
-            <a href="{{ route('image.show', $image->id) }}">{{ $image->title }}</a>
+            <a href="{{ url('/gallery/'.$image->gallery_id.'/image/'.$image->id.'/show') }}">{{ $image->title }}</a>
         </li>
     @endforeach
 </ul>

@@ -1,6 +1,6 @@
 <h1>Edit Gallery</h1>
 
-<form method="POST" action="{{ route('gallery.update', $gallery->id) }}">
+<form method="POST" action="{{ url('/gallery/'.$gallery->id.'/update') }}">
     @csrf
     <label for="title">Title:</label>
     <input type="text" name="title" value="{{ $gallery->title }}" required>

@@ -7,6 +7,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -16,18 +18,23 @@ return new class extends Migration
             $table->string('description');
             $table->string('image_path')->nullable();
             $table->foreignId('gallery_id')->constrained('galleries');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->dropConstrained('gallery_id', 'galleries');
+            $table->dropConstrainedForeignId('gallery_id');
+            $table->dropColumn('thumbnail');
         });
     }
+
 };
 ?>
