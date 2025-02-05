@@ -1,6 +1,6 @@
 <h1>Image Edit</h1>
 
-<form action="{{ route('image.update', $image->id) }}" method="post">
+<form action="{{ url('/gallery/'.$image->gallery_id.'/image/'.$image->id.'/update') }}" method="post">
     @csrf
     @method('patch')
     <label for="title">Title:</label>
