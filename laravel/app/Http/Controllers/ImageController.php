@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
 use App\Models\Image as Gallery_Image;
@@ -10,16 +11,32 @@ class ImageController extends Controller
 {
     public function createThumbnail($image, $size = [150, 150])
     {
-        // Define the path of the thumbnail
-        $thumb_path = 'thumbnails/' . $image->image_path . '.jpg';
+        // Define the path of the original image
+        $originalPath = storage_path('app/public/' . $image->image_path);
     
-        // Create the thumbnail
-        Image::read($image->image_path);
-        $image->fit($size);
-        $image->save($thumb_path);
-        return $thumb_path;
+        if (!file_exists($originalPath)) {
+            throw new \Exception("File not found: " . $originalPath);
+        }
+    
+        // Define the path for the thumbnail
+        $thumbPath = storage_path('app/public/thumbnails/' . basename($image->image_path));
+    
+        // Ensure the thumbnails directory exists
+        if (!file_exists(dirname($thumbPath))) {
+            mkdir(dirname($thumbPath), 0755, true);
+        }
+    
+        // Read the image and resize
+        $img = Image::read($originalPath)
+            ->cover($size[0], $size[1]) // Resize and maintain aspect ratio
+            ->toJpeg(80); // Convert to JPEG with 80% quality
+    
+        // Save the thumbnail
+        file_put_contents($thumbPath, (string) $img);
+    
+        return 'thumbnails/' . basename($image->image_path);
     }
-    
+
     public function index()
     {
         // Display a list of all images
