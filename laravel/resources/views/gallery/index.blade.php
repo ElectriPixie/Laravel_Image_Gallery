@@ -9,7 +9,10 @@
         <div class="card">
             <h2>{{ $gallery->title }}</h2>
             @if($gallery->images()->exists())
-                <img src="{{ $gallery->images()->first()->url }}" alt="Gallery Thumbnail">
+                @foreach($gallery->images as $image)
+                    <img src="{{ asset('storage/'.$image->image_path) }}" alt="{{ $image->title }}" style="width: 200px; height: 200px; object-fit: cover;">
+                    @break
+                @endforeach
             @endif
             <p>{{ $gallery->description }}</p>
             <div class="button-group">

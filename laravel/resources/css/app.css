@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #3e8e41;
+}
+
 .gallery-index {
     display: flex;
     flex-direction: column;
@@ -22,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #e5e5e5;
+    background-color: #ccc;
     /* Changed to a light grey color */
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -85,4 +89,151 @@ button:hover {
 .create-button:hover {
     background-color: #2ecc71;
     color: #fff;
+}
+
+label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #34c759;
+}
+
+.gallery-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #3e8e41;
+}
+
+.gallery-create form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #e5e5e5;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.gallery-show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #3e8e41;
+}
+
+.bordered-image {
+    background-color: #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #3e8e41;
+}
+
+.image-create form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #e5e5e5;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-create-button {
+    background-color: #34c759;
+    color: #333;
+    /* Changed to a dark grey color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image-create-button:hover {
+    background-color: #333;
+    color: #34c759;
+    /* Changed to a dark grey color */
+}
+
+.image-show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #3e8e41;
+}
+
+.image-show button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image-show button:hover {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.image-show h1 {
+    color: #000;
+}
+
+.image-show h1 a {
+    color: #000;
+    text-decoration: none;
+}
+
+.image-show h1 a:hover {
+    color: #2ecc71;
+    text-decoration: underline;
+}
+
+.image-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.image-actions form {
+    display: flex;
+}
+
+.image-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
 }
