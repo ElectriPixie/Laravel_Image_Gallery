@@ -8,7 +8,9 @@
     @foreach($galleries as $gallery)
         <div class="card">
             <h2>{{ $gallery->title }}</h2>
-            <img src="{{ $gallery->images()->first()->url }}" alt="Gallery Thumbnail">
+            @if($gallery->images()->exists())
+                <img src="{{ $gallery->images()->first()->url }}" alt="Gallery Thumbnail">
+            @endif
             <p>{{ $gallery->description }}</p>
             <div class="button-group">
                 <button class="view-button" onclick="location.href='{{ url('/gallery/'.$gallery->id.'/show') }}'">
@@ -24,5 +26,7 @@
             </form>
         </div>
     @endforeach
-    <p><a href="{{ url('/gallery/create') }}">Create New Gallery</a></p>
+    <button class="create-button" onclick="location.href='{{ url('/gallery/create') }}'">
+        Create New Gallery
+    </button>
 </div>
